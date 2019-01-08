@@ -19,9 +19,33 @@ namespace TripAdvisor.Controllers
         }
 
         // GET: Restaurants
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int restaurantRating, string searchString)
         {
-            return View(await _context.Restaurant.ToListAsync());
+            // Use LINQ to get list of genres.
+            IQueryable<int> ratingQuery = from m in _context.Restaurant
+                                            orderby m.Rating
+                                            select m.Rating;
+
+            var restaurants = from m in _context.Restaurant
+                         select m;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                restaurants = restaurants.Where(s => s.Name.Contains(searchString));
+            }
+
+            if (restaurantRating != 0)
+            {
+                restaurants = restaurants.Where(x => x.Rating == restaurantRating);
+            }
+
+            var restaurantRatingVM = new RatingViewModel
+            {
+                Ratings = new SelectList(await ratingQuery.Distinct().ToListAsync()),
+                Restaurants = await restaurants.ToListAsync()
+            };
+
+            return View(restaurantRatingVM);
         }
 
         // GET: Restaurants/Details/5

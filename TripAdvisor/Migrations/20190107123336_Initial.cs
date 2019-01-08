@@ -15,7 +15,7 @@ namespace TripAdvisor.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true),
-                    Rating = table.Column<double>(nullable: false)
+                    Rating = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -28,7 +28,7 @@ namespace TripAdvisor.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<double>("Rating");
+                    b.Property<int>("Rating");
 
                     b.HasKey("Id");
 
