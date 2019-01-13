@@ -26,6 +26,7 @@ namespace TripAdvisor.Models
                     {
                         Name = "Restaurant 1",
                         Location = "Location 1",
+                        Cuisine = "Armenian, Italian",
                         Rating = 5
                     },
 
@@ -33,6 +34,7 @@ namespace TripAdvisor.Models
                     {
                         Name = "Restaurant 2",
                         Location = "Location 2",
+                        Cuisine = "Georgian",
                         Rating = 4
                     },
 
@@ -40,6 +42,7 @@ namespace TripAdvisor.Models
                     {
                         Name = "Restaurant 3",
                         Location = "Location 3",
+                        Cuisine = "Armenian, Russian",
                         Rating = 3
                     },
 
@@ -47,6 +50,7 @@ namespace TripAdvisor.Models
                     {
                         Name = "Restaurant 4",
                         Location = "Location 4",
+                        Cuisine = "Armenian, Caucasian",
                         Rating = 2
                     },
                     
@@ -54,6 +58,7 @@ namespace TripAdvisor.Models
                     {
                         Name = "Restaurant 5",
                         Location = "Location 5",
+                        Cuisine = "Italian, Armenian, French",
                         Rating = 1
                     }
                 );

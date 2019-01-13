@@ -7,24 +7,40 @@
 
 <head>
 
-</head>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 
-<body>
+</head>
+<button style="float:right;" onclick="myFunction()"><img style="width:30px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Toicon-icon-lines-and-angles-filter.svg/2000px-Toicon-icon-lines-and-angles-filter.svg.png" alt="Alternate Text" /></button>
+
+<div id="myDIV" style="display:none;">
+    <form asp-controller="Restaurants" asp-action="Index" method="get">
+        <p>
+            Rating: <select asp-for="RestaurantRating" asp-items="Model.Ratings">
+                <option value="">All</option>
+            </select>
+            &nbsp;
+            &nbsp;
+            Title: <input type="text" name="SearchString">
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+</div>
     <h1>Index</h1>
 
     <p>
         <a asp-action="Create">Create New</a>
     </p>
 
-    <form asp-controller="Restaurants" asp-action="Index" method="get">
-        <p>
-            <select asp-for="RestaurantRating" asp-items="Model.Ratings">
-                <option value="">All</option>
-            </select>
-            Title: <input type="text" name="SearchString">
-            <input type="submit" value="Filter" />
-        </p>
-    </form>
+
 
     <table class="table">
         <thead>
@@ -38,67 +54,73 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Restaurants[0].Rating)
                 </th>
-                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Restaurants[0].Cuisine)
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.Restaurants)
             {
 
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Location)
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cuisine)
+                </td>
 
-                    @{
-                        switch (item.Rating)
-                        {
-                            case 5:
-                                <td>
-                                    <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★★★★★</span> </p>
-                                </td>
-                                break;
+                @{
+                    switch (item.Rating)
+                    {
+                        case 5:
+                            <td>
+                                <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★★★★★</span> </p>
+                            </td>
+                            break;
 
-                            case 4:
-                                <td>
-                                    <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★★★★</span> </p>
-                                </td>
-                                break;
+                        case 4:
+                            <td>
+                                <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★★★★</span> </p>
+                            </td>
+                            break;
 
-                            case 3:
-                                <td>
-                                    <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★★★</span> </p>
-                                </td>
-                                break;
+                        case 3:
+                            <td>
+                                <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★★★</span> </p>
+                            </td>
+                            break;
 
-                            case 2:
-                                <td>
-                                    <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★★</span> </p>
-                                </td>
-                                break;
+                        case 2:
+                            <td>
+                                <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★★</span> </p>
+                            </td>
+                            break;
 
-                            case 1:
-                                <td>
-                                    <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★</span> </p>
-                                </td>
-                                break;
-                        }
+                        case 1:
+                            <td>
+                                <p style=" height:0;"><span class="stars" style="-webkit-text-fill-color: gold; font-size:19px;">★</span> </p>
+                            </td>
+                            break;
                     }
+                }
 
 
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                </tr>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
-</body>
+
+
 
 
 
